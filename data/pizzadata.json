@@ -6,7 +6,7 @@
   "type": "veg",
   "price": 14,
   "name": "Paneer Tikka",
-  "image": "https://thumb9.shutterstock.com/display_pic_with_logo/376831/127528958/stock-photo-delicious-italian-pizza-over-white-127528958.jpg",
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgJKHbqwxw8Gz3prOp4vvtRl60xFTB6cscvQ&s",
   "description": "This is popular italian pizza flavoured with marinated tikka sauce and paneer         ",
   "ingredients": [
     "dough/flour",
@@ -29,7 +29,7 @@
   "type": "nonveg",
   "price": 16,
   "name": "Chicken Italiaona",
-  "image": "https://thumb7.shutterstock.com/display_pic_with_logo/96886/96886,1274350207,7/stock-photo-pizza-53553874.jpg",
+  "image": "https://as1.ftcdn.net/jpg/02/70/38/94/1000_F_270389487_7NUPjKE3piUpTtQxtSrDhtMXKsuErvco.jpg",
   "description": "This is popular italian pizza flavoured with light sugary taste and creamy touch",
   "ingredients": [
     "deep dish pizza mix",
@@ -54,7 +54,7 @@
   "type": "veg",
   "price": 15,
   "name": "Veggie Supreme",
-  "image": "https://thumb1.shutterstock.com/display_pic_with_logo/1003451/770556520/stock-photo-hot-pizza-with-pepperoni-sausage-on-a-dark-background-with-copy-space-pizza-with-mushrooms-770556520.jpg",
+  "image": "http://t3.ftcdn.net/jpg/09/99/60/04/240_F_999600495_8QiHqHMUmMAXxw79gcBA5RFWly097gcp.jpg",
   "description": "This is popular italian pizza flavoured with crushed garlic, with multiple herbs topped up with sweet corn",
   "ingredients": [
     "deep dish pizza mix",
@@ -79,7 +79,7 @@
   "type": "nonveg",
   "price": 13,
   "name": "Tripple Chicken Feast",
-  "image": "https://thumb9.shutterstock.com/display_pic_with_logo/2793292/332497832/stock-photo-mixture-pizza-italian-food-332497832.jpg",
+  "image": "https://thumb9.shutterstock.com/image-photo/stock-photo-mixture-pizza-italian-food-450w-332497832.jpg",
   "description": "This is popular italian pizza flavoured with unique greek dressing topped up with keema and meat ball",
   "ingredients": [
     "low carb pizza dough",
@@ -124,27 +124,26 @@
   ]
 },{
   "_id": {
-    "$oid": "615db1bd0a1e8e4336d2efbe"
+    "$oid": "615db1bd0a1e8e4336d2efbf"
   },
   "id": "0006",
-  "type": "nonveg",
-  "price": 14,
-  "name": "Tripple Chicken Feast",
-  "image": "https://thumb9.shutterstock.com/display_pic_with_logo/2793292/332497832/stock-photo-mixture-pizza-italian-food-332497832.jpg",
-  "description": "This is popular italian pizza flavoured with unique greek dressing topped up with keema and meat ball",
+  "type": "veg",
+  "price": 13,
+  "name": "Mexican Green Wave",
+  "image": "https://www.dominos.co.in//files/items/Mexican_Green_Wave.jpg",
+  "description": "A zesty and spicy pizza loaded with crunchy onions, crisp capsicum, juicy tomatoes, and jalapeños with a Mexican twist.",
   "ingredients": [
-    "low carb pizza dough",
-    "pizza saucce",
-    "pizza sauce seasoning",
+    "classic hand tossed dough",
+    "spicy Mexican sauce",
     "cheese",
-    "greek dressing",
-    "cajun"
+    "oregano seasoning"
   ],
   "topping": [
-    "Chicken keema",
-    "Fried Onion",
-    "Chicken Meat ball",
+    "Onion",
     "Capsicum",
-    "Sweet corn"
+    "Tomato",
+    "Jalapeños",
+    "Cheese burst"
   ]
-}]
+}
+]
