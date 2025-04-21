@@ -9,6 +9,7 @@ export default class Cart extends React.Component {
         this.state = {
             cart: [],
             sum: 0,
+            isCartCheckedOut: false, // New state to track checkout status
         };
     }
 
@@ -23,31 +24,36 @@ export default class Cart extends React.Component {
     }
 
     totalPrice = () => {
-        return this.state.cart!=null ? this.state.cart.reduce((total, item) => total + (item.price * item.quantity), 0) : 0;
+        return this.state.cart != null
+            ? this.state.cart.reduce((total, item) => total + item.price * item.quantity, 0)
+            : 0;
     };
 
     handleRemove = (pizza) => {
         axios.post("http://localhost:8080/deletefromcart", pizza)
             .then(() => {
-                this.setState(prevState => ({
-                    cart: prevState.cart.filter(item => item !== pizza),
+                this.setState((prevState) => ({
+                    cart: prevState.cart.filter((item) => item !== pizza),
                 }));
             })
             .catch((err) => {
                 console.log(err);
             });
-    }
+    };
 
     handleCheckout = () => {
-        axios.post("http://localhost:8080/clearcart")
-            .then(() => {
-                this.setState({ cart: [] }); // Clear the cart in the frontend
-                alert("Checkout successful! Your cart has been cleared.");
-            })
-            .catch((err) => {
-                console.log(err);
-                alert("Failed to complete checkout. Please try again.");
-            });
+        if(this.state.cart != null && this.state.cart.length > 0) {
+            this.setState({ isCartCheckedOut: true });
+            axios.post("http://localhost:8080/clearcart")
+                .then(() => {
+                    this.setState({ cart: [] }); // Clear the cart in the frontend
+                    alert("Checkout successful! Your cart has been cleared.");
+                })
+                .catch((err) => {
+                    console.log(err);
+                    alert("Failed to complete checkout. Please try again.");
+                });
+        }
     };
 
     render() {
@@ -96,8 +102,18 @@ export default class Cart extends React.Component {
                             <p><strong>Delivery Fee: </strong>${deliveryFee.toFixed(2)}</p>
                             <hr />
                             <p><strong>Total: </strong>${total.toFixed(2)}</p>
-                            <Link to="/Cartt">
-                                <button className="btn btn-success" onClick={this.handleCheckout}>Checkout</button>
+                            <Link
+                                to={{
+                                    pathname: "/Cartt",
+                                    state: { isCartCheckedOut: this.state.cart != null && this.state.cart.length > 0 }, // Explicitly pass true/false
+                                }}
+                            >
+                                <button
+                                    className="btn btn-success"
+                                    onClick={this.handleCheckout}
+                                >
+                                    Checkout
+                                </button>
                             </Link>
                             <Link to="/OrderPizza">
                                 <button className="btn btn-outline-secondary mx-2">Back to Menu</button>
