@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "6376f4588d2876fbdeb21ca2"
+  },
+  "mob": "1234567890",
+  "name": "deavki",
+  "email": "devaki@gmail.com",
+  "password": "Qwerty"
+},{
+  "_id": {
+    "$oid": "6376f5c753d3ff69cc684de3"
+  },
+  "mob": "1234567890",
+  "name": "saketh",
+  "email": "saketh@gmail.com",
+  "password": "Qwerty"
+},{
+  "_id": {
+    "$oid": "63800bf684699923aef94704"
+  },
+  "mob": "0000000000",
+  "name": "Tarun",
+  "email": "Tzrun@gmail.com",
+  "password": "Qwerty"
+},{
+  "_id": {
+    "$oid": "63856ef51164bf530328bedf"
+  },
+  "mob": "0000000000",
+  "name": "Rithwik",
+  "email": "Naveen@gmail.com",
+  "password": "Qwerty"
+}]
