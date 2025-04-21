@@ -1,30 +1,38 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';  // ✅ Import from 'react-dom/client'
-import './index.css';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Redirect, Switch, Route } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import Homes from './components/Homes';
+import OrderPizza from './components/OrderPizza';
 import BuildUrPizza from './components/BuildUrPizza';
 import Login from './components/Login';
 import Register from './components/Register';
+import Cart from './components/Cart';
+import Cartt from './components/Cartt';
 import CheckLogin from './components/CheckLogin';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './AuthContext';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));  // ✅ Use createRoot
-root.render(
-    <React.StrictMode>
-        <BrowserRouter>
+ReactDOM.render(
+    <BrowserRouter>
+        <AuthProvider>
             <App />
-            <Routes>
-                <Route path="/" element={<Navigate to="/Homes" />} />
-                <Route path="/Homes" element={<Homes />} />
-                <Route path="/BuildUrPizza" element={<BuildUrPizza />} />
-                <Route path="/Login" element={<Login />} />
-                <Route path="/Register" element={<Register />} />
-                <Route path="/CheckLogin" element={<CheckLogin />} />
-            </Routes>
-        </BrowserRouter>
-    </React.StrictMode>
+            <Switch>
+                <Route exact path="/" render={() => <Redirect to="/Homes" />} />
+                <Route path="/Login" component={Login} />
+                <Route path="/Register" component={Register} />
+                <Route path="/Homes" component={Homes} />
+                <ProtectedRoute path="/OrderPizza" component={OrderPizza} />
+                <ProtectedRoute path="/BuildUrPizza" component={BuildUrPizza} />
+                <ProtectedRoute path="/Cart" component={Cart} />
+                <ProtectedRoute path="/Cartt" component={Cartt} />
+                <ProtectedRoute path="/CheckLogin" component={CheckLogin} />
+            </Switch>
+        </AuthProvider>
+    </BrowserRouter>,
+    document.getElementById('root')
 );
 
 reportWebVitals();

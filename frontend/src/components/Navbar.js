@@ -1,40 +1,63 @@
-import React from 'react';
-import Logo from '../images/pizza_ordering_platform.png';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { withRouter } from 'react-router-dom';
+import logo from '../images/pizza_ordering_platform.png';
+import axios from 'axios';
+import { AuthContext } from '../AuthContext';
 
-export default function Navbar() {
-    const navigate = useNavigate();
-    const handleClick = () => navigate('/Cart');
+const Navbar = (props) => {
+    const { isLoggedIn, logout } = useContext(AuthContext);
 
-    const handlemouse = () => {
-        <img src={Logo} alt="Logo" />
+    const handleLogout = () => {
+        axios.get("http://localhost:8080/logout")
+            .then(() => {
+                logout();
+                props.history.push("/Homes");
+            })
+            .catch(err => console.error(err));
     };
 
+    const handleNavigate = (path) => props.history.push(path);
+
     return (
-        <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light"> &nbsp;
-                <a className="navbar-brand" href="./Homes">Grab Your Pizza</a>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <a className="nav-item active" href="./Homes">
-                            <img src={Logo} style={{ width: 60, height: 50, marginTop: -5 }} alt="Logo" />
-                        </a>
-                        <li className="nav-item">
-                            <a className="nav-link" href="./OrderPizza">Order Pizza</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="./BuildUrPizza">Build Ur Pizza</a>
-                        </li>
-                    </ul>
+        <nav className="navbar navbar-expand-lg navbar-light px-3" style={{ background: '#e8f5e9', boxShadow: '0 2px 6px rgba(0,0,0,0.08)', borderBottom: '1px solid #dfece6' }}>
+            <a className="navbar-brand d-flex align-items-center" href="./Homes">
+                <img src={logo} alt="Logo" height="40" className="d-inline-block align-top me-2" />
+                <span className="fw-bold fs-5 text-success">Pizza-Hub</span>
+            </a>
+            <div className="collapse navbar-collapse">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
+                    {isLoggedIn && (
+                        <>
+                            <li className="nav-item">
+                                <button className="nav-link btn btn-link text-dark" onClick={() => handleNavigate("/OrderPizza")}>Order Pizza</button>
+                            </li>
+                            <li className="nav-item">
+                                <button className="nav-link btn btn-link text-dark" onClick={() => handleNavigate("/BuildUrPizza")}>Build Your Own</button>
+                            </li>
+                        </>
+                    )}
+                </ul>
+
+                <div className="d-flex align-items-center gap-2">
+                    {isLoggedIn ? (
+                        <>
+                            <button className="btn btn-success d-flex align-items-center" onClick={() => handleNavigate("/Cart")}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-cart me-2" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                </svg>
+                                Cart</button>
+                            <button className="btn btn-outline-success" onClick={handleLogout}>Logout</button>
+                        </>
+                    ) : (
+                        <>
+                            <button className="btn btn-outline-success" onClick={() => handleNavigate("/Login")}>Login</button>
+                            <button className="btn btn-outline-success" onClick={() => handleNavigate("/Register")}>Register</button>
+                        </>
+                    )}
                 </div>
-                <div className="a">
-                    <button type="button" className="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Shopping Cart" onClick={handleClick} onMouseOver={handlemouse}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart" viewBox="0 0 16 16">
-                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                        </svg> Shopping Cart
-                    </button>
-                </div> &nbsp;
-            </nav>
-        </div>
+            </div>
+        </nav>
     );
-}
+};
+
+export default withRouter(Navbar);
