@@ -1,7 +1,7 @@
-# Pizza Ordering Platform
+# Pizza Hub
 
 ## Setup Instructions
-To run the Pizza Ordering Platform application, you need to ensure that you have the following installed:
+To run the Pizza Hub application, you need to ensure that you have the following installed:
 - React.js
 - Go
 - MongoDB server
@@ -35,4 +35,4 @@ To run the Pizza Ordering Platform application, you need to ensure that you have
       ```
 
 4. **Accessing the Application:**
-    - Once both backend and frontend servers are running, access the Pizza Ordering Platform in your browser at [http://localhost:3000](http://localhost:3000).
+    - Once both backend and frontend servers are running, access the Pizza Hub in your browser at [http://localhost:3000](http://localhost:3000).
